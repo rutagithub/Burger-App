@@ -7,6 +7,7 @@ function App() {
     <div>
       <Layout>
         <BurgerBuilder />
+        <p>Hi</p>
       </Layout>
     </div>
   );
