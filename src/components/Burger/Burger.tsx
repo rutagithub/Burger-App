@@ -1,8 +1,16 @@
 import React from "react";
 import './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
+import { Ingredients } from '../../containers/BurgerBuilder/BurgerBuilder';
 
-const burger = (props: any) => {
+interface BurgerProps {
+  ingredients: Ingredients;
+}
+
+const burger = (props: BurgerProps) => {
+
+  console.log(props);
+  
   let transformedIngredients = Object.keys(props.ingredients)
     .map(igKey => {
       return [...Array(props.ingredients[igKey])].map((_, i) => {
