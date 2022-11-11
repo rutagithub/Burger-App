@@ -4,7 +4,13 @@ import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import DrawerToggle from "../SideDrawer/DrawerToggle/DrawerToggle";
 
-const toolbar = (props: any) => (
+
+// Interfaces:
+// Properties interface
+interface Props {
+  drawerToggleClicked: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}
+const toolbar = (props: Props) => (
   <header className="Toolbar">
     <DrawerToggle clicked={props.drawerToggleClicked}/>
     <div className="LogoTool">

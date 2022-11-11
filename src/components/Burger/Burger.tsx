@@ -3,14 +3,15 @@ import './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 import { Ingredients } from '../../containers/BurgerBuilder/BurgerBuilder';
 
-interface BurgerProps {
+// Interfaces:
+// Burger Properties interface
+interface Props {
   ingredients: Ingredients;
 }
 
-const burger = (props: BurgerProps) => {
+const burger = (props: Props) => {
+  // console.log(props);
 
-  console.log(props);
-  
   let transformedIngredients = Object.keys(props.ingredients)
     .map(igKey => {
       return [...Array(props.ingredients[igKey])].map((_, i) => {
@@ -24,7 +25,7 @@ const burger = (props: BurgerProps) => {
   // console.log(transformedIngredients);
 
   if (transformedIngredients.length === 0) {
-    (transformedIngredients as any) = <p>Please start adding ingredients!</p>;
+    transformedIngredients = [<p>Please start adding ingredients!</p>];
   }
   
 

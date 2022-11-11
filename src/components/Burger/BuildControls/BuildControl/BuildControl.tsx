@@ -1,13 +1,22 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import './BuildControl.css'
 
-const buildControl = (props: any) => (
+// Interfaces:
+// Properties interface
+interface Props {
+  label: ReactNode;
+  removed: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  disabled?: number | boolean;
+  added: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+}
+
+const buildControl = (props: Props) => (
   <div className="BuildControl">
     <div className="Label">{props.label}</div>
     <button
       className="Less"
       onClick={props.removed}
-      disabled={props.disabled}>Less</button>
+      disabled={props.disabled === true ? props.disabled : false}>Less</button>
     <button
       className="More"
       onClick={props.added}>More</button>

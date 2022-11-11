@@ -4,9 +4,11 @@ import { Ingredients } from '../../../containers/BurgerBuilder/BurgerBuilder';
 import Button from '../../UI/Button/Button';
 import './CheckoutSummary.css';
 
+// Interfaces:
+// Properties interface
 interface Props {
-  checkoutContinued: any;
-  checkoutCancelled: any;
+  checkoutContinued: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  checkoutCancelled: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   ingredients: Ingredients;
 }
 

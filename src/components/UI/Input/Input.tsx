@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import './Input.css';
 
+// Interfaces:
 // input properties interface
 interface InputProps {
   elementConfig: any;
@@ -19,6 +20,7 @@ interface InputOption {
   displayValue: ReactNode;
 }
 
+// code
 const input = (props: InputProps) => {
   let inputElement = null;
   const inputClasses = ["InputElement"];
@@ -48,20 +50,27 @@ const input = (props: InputProps) => {
         />
       );
       break;
+
     case 'select':
       inputElement = (
-        <select 
-        className={inputClasses.join(' ')}
-        value={props.value}
-        onChange={props.changed}>
+        <select
+          className={inputClasses.join(' ')}
+          value={props.value}
+          onChange={props.changed}
+        >
           {props.elementConfig.options.map((option: InputOption) => (
-            <option key={option.value} value={option.value}>
+            <option
+              key={option.value}
+              value={option.value}
+              onChange={props.changed}
+            >
               {option.displayValue}
             </option>
           ))}
         </select>
       );
       break;
+
     default:
       inputElement = (
         <input

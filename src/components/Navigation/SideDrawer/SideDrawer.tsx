@@ -5,8 +5,15 @@ import NavigationItems from "../NavigationItems/NavigationItems";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import Aux from '../../../hoc/Auxilliary/Auxilliary';
 
+// Interfaces:
+// Properties interface
+interface Props {
+  open: boolean;
+  closed: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}
 
-const sideDrawer = (props: any) => {
+// Code
+const sideDrawer = (props: Props) => {
 
   let attachedClasses = ["SideDrawer", "Close"];
   

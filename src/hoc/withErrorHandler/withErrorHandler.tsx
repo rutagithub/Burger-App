@@ -2,23 +2,29 @@ import React, { Component } from 'react';
 import Modal from '../../components/UI/Modal/Modal';
 import Aux from '../Auxilliary/Auxilliary';
 
-
+// Interfaces:
+// Functions interface
 interface Functions {
   eject: Function;
   use: Function;
 }
 
+// Interceptors interface
 interface Interceptors {
   response: Functions;
   request: Functions;
 }
 
+// Axios interface
 interface Axios {
   interceptors: Interceptors;
 }
 
-interface Props {}
+// Properties interface
+interface Props { }
 
+
+// Code
 const withErrorHandler = (WrappedComponent: Function, axios: Axios) => {
   return class extends Component<Props> {
     state = {
@@ -35,8 +41,11 @@ const withErrorHandler = (WrappedComponent: Function, axios: Axios) => {
         this.setState({ error: null });
         return req;
       });
+
       this.resInterceptor = axios.interceptors.response.use(
-        (res: Props) => res,
+        (res: Props) => {
+          return res
+        },
         (error: Props) => {
           this.setState({ error: error });
         }
@@ -44,7 +53,7 @@ const withErrorHandler = (WrappedComponent: Function, axios: Axios) => {
     }
 
     componentWillUnmount(): void {
-      console.log("Will Unmount", this.reqInterceptor, this.resInterceptor);
+      // console.log("Will Unmount", this.reqInterceptor, this.resInterceptor);
       axios.interceptors.request.eject(this.reqInterceptor);
       axios.interceptors.response.eject(this.resInterceptor);
     }

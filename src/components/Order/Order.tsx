@@ -2,12 +2,14 @@ import React from "react";
 import './Order.css';
 import { Ingredients } from '../../containers/BurgerBuilder/BurgerBuilder';
 
+// Interfaces:
 // properties interface 
 interface Props {
   ingredients: Ingredients;
   price: string;
 }
 
+// Code
 const order = (props: Props) => {
   const ingredients = [];
 
@@ -38,7 +40,6 @@ const order = (props: Props) => {
       <p>Price: <strong>USD {Number.parseFloat(props.price).toFixed(2)}</strong></p>
     </div>
   );
-
 };
 
 export default order;

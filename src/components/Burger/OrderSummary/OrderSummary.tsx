@@ -1,9 +1,11 @@
-import React, { Component, ReactNode } from 'react';
+import React, { Component } from 'react';
 import Aux from '../../../hoc/Auxilliary/Auxilliary';
 import Button from '../../UI/Button/Button';
+import { Ingredients } from '../../../containers/BurgerBuilder/BurgerBuilder';
 
+// Properties interface
 interface Props {
-  ingredients: any;
+  ingredients: Ingredients;
   price: number;
   purchaseCancelled:
   | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
@@ -18,8 +20,6 @@ class OrderSummary extends Component<Props> {
   componentWillUpdate() {
     console.log('[OrderSummary] Will Update');
   }
-
-  ingredientSummary: ReactNode;
 
   render() {
     const ingredientSummary = Object.keys(this.props.ingredients).map(

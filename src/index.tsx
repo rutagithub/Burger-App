@@ -5,13 +5,10 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { legacy_createStore as createStore, compose, applyMiddleware, combineReducers } from 'redux';
-import reducer from './store/reducers/reducer';
+import burgerBuilderReducer from './store/reducers/burgerBuilder';
 import reportWebVitals from './reportWebVitals';
 import thunk from 'redux-thunk';
-
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+import orderReducer from './store/reducers/order';
 
 declare global {
   interface Window {
@@ -19,9 +16,14 @@ declare global {
   }
 }
 
+const rootReducer = combineReducers({
+  burgerBuilder: burgerBuilderReducer,
+  order: orderReducer
+});
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 const app = (
   <Provider store={store}>
@@ -29,6 +31,10 @@ const app = (
       <App />
     </BrowserRouter>
   </Provider>
+);
+
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
 );
 
 root.render(

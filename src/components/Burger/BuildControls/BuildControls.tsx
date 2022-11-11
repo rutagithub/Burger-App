@@ -2,6 +2,18 @@ import React from "react";
 import './BuildControls.css';
 import BuildControl from './BuildControl/BuildControl';
 
+// Interfaces
+// Properties interface
+interface Props {
+  price: number;
+  ingredientAdded: Function;
+  ingredientRemoved: Function;
+  disabled: { [key: string]: number | boolean};
+  purchasable: boolean;
+  ordered: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+}
+
+// Code
 const controls = [
   { label: 'Salad', type: 'salad' },
   { label: 'Bacon', type: 'bacon' },
@@ -9,7 +21,7 @@ const controls = [
   { label: 'Meat', type: 'meat' }
 ];
 
-const buildControls = (props: any) => (
+const buildControls = (props: Props) => (
   <div className="BuildControls">
     <p>Current Price: <strong>{props.price.toFixed(2)}</strong></p>
     {controls.map(ctrl => (

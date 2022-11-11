@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import './NavigationItem.css';
 import { NavLink } from 'react-router-dom';
 
+// Interfaces:
 // properties interface
 interface Props {
   link: string;
@@ -9,9 +10,14 @@ interface Props {
   exact?: boolean;
 }
 
+// Code
 const navigationItem = (props: Props) => (
   <li className="NavigationItem">
-    <NavLink to={props.link} exact={props.exact} activeClassName="active">
+    <NavLink
+      to={props.link}
+      exact={props.exact}
+      activeClassName="active"
+    >
       {props.children}
     </NavLink>
   </li>

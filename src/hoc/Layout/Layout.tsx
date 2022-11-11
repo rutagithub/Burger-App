@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, ReactNode } from 'react';
 import Aux from '../Auxilliary/Auxilliary';
 import './Layout.css';
 import Toolbar from '../../components/Navigation/ToolBar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
-interface props {
-  children: React.ReactNode;
+// Interfaces:
+// Properties interface
+interface Props {
+  showSideDrawer?: boolean;
+  children: ReactNode;
 }
-class Layout extends Component<props> {
+
+// Code
+class Layout extends Component<Props> {
   state = {
     showSideDrawer: false,
   };
@@ -17,7 +22,7 @@ class Layout extends Component<props> {
   };
 
   sideDrawerToggleHandler = () => {
-    this.setState((prevState: any) => {
+    this.setState((prevState: Props) => {
       return { showSideDrawer: !prevState.showSideDrawer };
     });
   };
