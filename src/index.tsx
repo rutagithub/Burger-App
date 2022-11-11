@@ -5,7 +5,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { legacy_createStore as createStore, compose, applyMiddleware, combineReducers } from 'redux';
-import reducer from './store/reducer';
+import reducer from './store/reducers/reducer';
 import reportWebVitals from './reportWebVitals';
 import thunk from 'redux-thunk';
 
