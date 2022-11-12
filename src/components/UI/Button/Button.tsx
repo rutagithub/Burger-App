@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import './Button.css';
 
 // Interfaces:
@@ -6,7 +6,7 @@ import './Button.css';
 interface Props {
   btnType: React.Key;
   clicked?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  children?: React.ReactNode;
+  children?: ReactNode;
   disabled?: boolean;
 }
 

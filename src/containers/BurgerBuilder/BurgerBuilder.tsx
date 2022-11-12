@@ -50,7 +50,7 @@ interface Props {
 // Code
 class BurgerBuilder extends Component<Props> {
   state = {
-    purchasing: false,
+    purchasing: false
   };
 
   componentDidMount(): void {

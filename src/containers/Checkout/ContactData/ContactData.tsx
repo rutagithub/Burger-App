@@ -80,72 +80,72 @@ class ContactData extends Component<Props, State> {
         elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'Your Name',
+          placeholder: 'Your Name'
         },
         value: '',
         validation: {
-          required: true,
+          required: true
         },
         valid: false,
-        touched: false,
+        touched: false
       },
 
       street: {
         elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'Street',
+          placeholder: 'Street'
         },
         value: '',
         validation: {
-          required: true,
+          required: true
         },
         valid: false,
-        touched: false,
+        touched: false
       },
 
       postalCode: {
         elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'Postal Code',
+          placeholder: 'Postal Code'
         },
         value: '',
         validation: {
           required: true,
           minLength: 5,
-          maxLength: 5,
+          maxLength: 5
         },
         valid: false,
-        touched: false,
+        touched: false
       },
 
       country: {
         elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'Country',
+          placeholder: 'Country'
         },
         value: '',
         validation: {
-          required: true,
+          required: true
         },
         valid: false,
-        touched: false,
+        touched: false
       },
 
       email: {
         elementType: 'input',
         elementConfig: {
           type: 'email',
-          placeholder: 'Your Email',
+          placeholder: 'Your Email'
         },
         value: '',
         validation: {
-          required: true,
+          required: true
         },
         valid: false,
-        touched: false,
+        touched: false
       },
 
       deliveryMethod: {
@@ -153,8 +153,8 @@ class ContactData extends Component<Props, State> {
         elementConfig: {
           options: [
             { value: 'fastest', displayValue: 'Fastest' },
-            { value: 'cheapest', displayValue: 'Cheapest' },
-          ],
+            { value: 'cheapest', displayValue: 'Cheapest' }
+          ]
         },
         value: 'fastest',
         validation: {},
@@ -169,6 +169,7 @@ class ContactData extends Component<Props, State> {
     // console.log(this.props.ingredients);
 
     const formData: { [data: string]: string } = {};
+    
     for (let formElementIdentifier in this.state.orderForm) {
       formData[formElementIdentifier as keyof ContactForm] =
         this.state.orderForm[formElementIdentifier as keyof ContactForm].value;
@@ -177,7 +178,7 @@ class ContactData extends Component<Props, State> {
     const order = {
       ingredients: this.props.ings,
       price: this.props.price,
-      orderData: formData,
+      orderData: formData
     };
 
     this.props.onOrderBurger(order);
@@ -186,20 +187,20 @@ class ContactData extends Component<Props, State> {
   checkValidity(value: string, rules: InputRules) {
     let isValid = true;
 
-    // if (!rules) {
-    //   return true;
-    // }
+    if (!rules) {
+      return true;
+    }
 
     if (rules.required) {
-      isValid = value.trim() !== '' && isValid;
+      isValid = value.trim() !== '' && isValid
     }
 
     if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
+      isValid = value.length >= rules.minLength && isValid
     }
 
     if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
+      isValid = value.length <= rules.maxLength && isValid
     }
 
     return isValid;
@@ -211,11 +212,11 @@ class ContactData extends Component<Props, State> {
   ) => {
     // console.log(event.target.value);
     const updatedOrderForm: any = {
-      ...this.state.orderForm,
+      ...this.state.orderForm
     };
 
     const updatedFormElement = {
-      ...updatedOrderForm[inputIdentifier],
+      ...updatedOrderForm[inputIdentifier]
     };
 
     updatedFormElement.value = event.target.value;
@@ -241,13 +242,13 @@ class ContactData extends Component<Props, State> {
     for (let key in this.state.orderForm) {
       formElementsArray.push({
         id: key,
-        config: this.state.orderForm[key as keyof ContactForm],
+        config: this.state.orderForm[key as keyof ContactForm]
       });
     }
 
     let form = (
       <form onSubmit={this.orderHandler}>
-        {formElementsArray.map((formElement) => (
+        {formElementsArray.map(formElement => (
           <Input
             key={formElement.id}
             elementType={formElement.config.elementType}
@@ -257,8 +258,7 @@ class ContactData extends Component<Props, State> {
             shouldValidate={formElement.config.validation}
             touched={formElement.config.touched}
             changed={(event: React.ChangeEvent<HTMLInputElement>) =>
-              this.inputChangedHandler(event, formElement.id)
-            }
+              this.inputChangedHandler(event, formElement.id)}
           />
         ))}
         <Button btnType="Success" disabled={!this.state.formIsValid}>
@@ -294,4 +294,4 @@ const mapDispatchToProps = (dispatch: Function) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));
+export default connect(mapStateToProps, mapDispatchToProps)(ContactData);

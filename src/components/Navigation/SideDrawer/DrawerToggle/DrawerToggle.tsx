@@ -4,7 +4,7 @@ import './DrawerToggle.css';
 // Interfaces:
 // Properties interface
 interface Props {
-  clicked?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  clicked?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 const drawerToggle = (props: Props) => (

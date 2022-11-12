@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, ReactNode } from 'react';
 import './Modal.css';
 import Aux from '../../../hoc/Auxilliary/Auxilliary';
 import Backdrop from '../Backdrop/Backdrop';
 
 interface Props {
   show: { message: string } | string | boolean;
-  modalClosed:
-    | ((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void)
-    | undefined;
-  children: React.ReactNode;
+  modalClosed: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  children: ReactNode;
 }
 class Modal extends Component<Props> {
 

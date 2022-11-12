@@ -30,7 +30,7 @@ const input = (props: InputProps) => {
   }
 
   switch (props.elementType) {
-    case 'input':
+    case ('input'):
       inputElement = (
         <input
           className={inputClasses.join(' ')}
@@ -40,7 +40,7 @@ const input = (props: InputProps) => {
         />
       );
       break;
-    case 'textarea':
+    case ('textarea'):
       inputElement = (
         <textarea
           className={inputClasses}
@@ -51,7 +51,7 @@ const input = (props: InputProps) => {
       );
       break;
 
-    case 'select':
+    case ('select'):
       inputElement = (
         <select
           className={inputClasses.join(' ')}

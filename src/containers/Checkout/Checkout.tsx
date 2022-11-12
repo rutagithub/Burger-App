@@ -7,16 +7,14 @@ import { connect } from 'react-redux';
 
 // Interfaces:
 // checkout interface
-interface checkoutProps {
+interface CheckoutProps {
   ingredients: Ingredients;
   ings: Ingredients;
   history: {
     replace: Function;
     goBack: Function;
   };
-  location: {
-    search: string;
-  };
+  location: Function;
   entries: Function;
   query: Function;
   match: { path: Function };
@@ -37,9 +35,8 @@ interface State {
   order: Checkout;
 }
 
-
 // Code
-class Checkout extends Component<checkoutProps> {
+class Checkout extends Component<CheckoutProps> {
 
   checkoutCancelledHandler = () => {
     this.props.history.goBack();

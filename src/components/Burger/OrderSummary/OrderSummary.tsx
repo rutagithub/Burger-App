@@ -7,12 +7,8 @@ import { Ingredients } from '../../../containers/BurgerBuilder/BurgerBuilder';
 interface Props {
   ingredients: Ingredients;
   price: number;
-  purchaseCancelled:
-  | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
-  | undefined;
-  purchaseContinued:
-  | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
-  | undefined;
+  purchaseCancelled: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  purchaseContinued: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 class OrderSummary extends Component<Props> {

@@ -26,20 +26,20 @@ class BurgerIngredient extends Component<Props> {
         );
         break;
 
-      case 'meat':
-        ingredient = <div className="Meat"></div>;
-        break;
-
-      case 'cheese':
-        ingredient = <div className="Cheese"></div>;
-        break;
-
       case 'salad':
         ingredient = <div className="Salad"></div>;
         break;
 
       case 'bacon':
         ingredient = <div className="Bacon"></div>;
+        break;
+
+      case 'cheese':
+        ingredient = <div className="Cheese"></div>;
+        break;
+
+      case 'meat':
+        ingredient = <div className="Meat"></div>;
         break;
 
       default:

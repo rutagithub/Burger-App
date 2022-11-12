@@ -13,6 +13,7 @@ interface Functions {
 interface Interceptors {
   response: Functions;
   request: Functions;
+
 }
 
 // Axios interface
@@ -44,7 +45,7 @@ const withErrorHandler = (WrappedComponent: Function, axios: Axios) => {
 
       this.resInterceptor = axios.interceptors.response.use(
         (res: Props) => {
-          return res
+          return res;
         },
         (error: Props) => {
           this.setState({ error: error });
@@ -62,7 +63,7 @@ const withErrorHandler = (WrappedComponent: Function, axios: Axios) => {
       this.setState({ error: null });
     };
 
-    render() {
+    render () {
       return (
         <Aux>
           <Modal
