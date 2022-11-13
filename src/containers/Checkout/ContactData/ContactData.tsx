@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
+import React, { ChangeEvent, Component } from 'react';
 import { connect } from 'react-redux';
 import './ContactData.css';
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
-import axios from '../../../axios-orders';
 import Input from '../../../components/UI/Input/Input';
 import { Ingredients } from '../../BurgerBuilder/BurgerBuilder';
-import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../../store/actions/index';
 
 // Interfaces:
@@ -34,7 +32,7 @@ interface State {
 }
 
 // input rules interface
-interface InputRules {
+export interface InputRules {
   elementType: string;
   elementConfig: ElConfig;
   value: string;
@@ -207,7 +205,7 @@ class ContactData extends Component<Props, State> {
   }
 
   inputChangedHandler = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: ChangeEvent<HTMLInputElement>,
     inputIdentifier: string
   ) => {
     // console.log(event.target.value);
