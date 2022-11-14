@@ -6,6 +6,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Input from '../../../components/UI/Input/Input';
 import { Ingredients } from '../../BurgerBuilder/BurgerBuilder';
 import * as actions from '../../../store/actions/index';
+import { updateObject } from '../../../shared/utility';
 
 // Interfaces:
 //properties interface
@@ -15,6 +16,8 @@ interface Props {
   price: number;
   onOrderBurger: Function;
   loading: boolean;
+  token: string;
+  userId: string;
 }
 
 // contact form data interface
@@ -68,6 +71,10 @@ interface Data {
 interface DataState {
   burgerBuilder: Data;
   order: Data;
+  auth: {
+    token: string;
+    userId: string;
+  };
 }
 
 // Code
@@ -167,7 +174,7 @@ class ContactData extends Component<Props, State> {
     // console.log(this.props.ingredients);
 
     const formData: { [data: string]: string } = {};
-    
+
     for (let formElementIdentifier in this.state.orderForm) {
       formData[formElementIdentifier as keyof ContactForm] =
         this.state.orderForm[formElementIdentifier as keyof ContactForm].value;
@@ -176,10 +183,12 @@ class ContactData extends Component<Props, State> {
     const order = {
       ingredients: this.props.ings,
       price: this.props.price,
-      orderData: formData
+      orderData: formData,
+      userId: this.props.userId
+
     };
 
-    this.props.onOrderBurger(order);
+    this.props.onOrderBurger(order, this.props.token);
   };
 
   checkValidity(value: string, rules: InputRules) {
@@ -206,24 +215,18 @@ class ContactData extends Component<Props, State> {
 
   inputChangedHandler = (
     event: ChangeEvent<HTMLInputElement>,
-    inputIdentifier: string
-  ) => {
+    inputIdentifier: string) => {
     // console.log(event.target.value);
-    const updatedOrderForm: any = {
-      ...this.state.orderForm
-    };
 
-    const updatedFormElement = {
-      ...updatedOrderForm[inputIdentifier]
-    };
+    const updatedFormElement = updateObject(this.state.orderForm[inputIdentifier], {
+      value: event.target.value,
+      valid: this.checkValidity(event.target.value, this.state.orderForm[inputIdentifier].validation),
+      touched: true
+    });
 
-    updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = this.checkValidity(
-      updatedFormElement.value,
-      updatedFormElement.validation
-    );
-    updatedFormElement.touched = true;
-    updatedOrderForm[inputIdentifier] = updatedFormElement;
+    const updatedOrderForm = updateObject(this.state.orderForm, {
+      [inputIdentifier] = updatedFormElement
+    })
 
     let formIsValid = true;
 
@@ -282,13 +285,15 @@ const mapStateToProps = (state: DataState) => {
   return {
     ings: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
-    loading: state.order.loading
+    loading: state.order.loading,
+    token: state.auth.token,
+    userId: state.auth.userId
   };
 };
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    onOrderBurger: (orderData: number) => dispatch(actions.purchaseBurger(orderData))
+    onOrderBurger: (orderData: number, token: string) => dispatch(actions.purchaseBurger(orderData, token))
   };
 };
 

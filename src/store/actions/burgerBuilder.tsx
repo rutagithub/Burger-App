@@ -2,6 +2,8 @@ import * as actionTypes from './actionTypes';
 import axios from '../../axios-orders';
 import { Ingredients } from '../../containers/BurgerBuilder/BurgerBuilder';
 
+
+// Add ingredient
 export const addIngredient = (
     name: string
 ): actionTypes.Add => {
@@ -11,6 +13,7 @@ export const addIngredient = (
     };
 };
 
+// Remove ingredient
 export const removeIngredient = (name: string): actionTypes.Remove => {
     return {
         type: actionTypes.REMOVE_INGREDIENT,
@@ -18,6 +21,7 @@ export const removeIngredient = (name: string): actionTypes.Remove => {
     };
 };
 
+// Set ingredients
 export const setIngredients = (ingredients: Ingredients): actionTypes.Set => {
     return {
         type: actionTypes.SET_INGREDIENTS,
@@ -25,12 +29,14 @@ export const setIngredients = (ingredients: Ingredients): actionTypes.Set => {
     };
 };
 
+// Fetch failed
 export const fetchIngredientsFailed = (): actionTypes.Fetch => {
     return {
         type: actionTypes.FETCH_INGREDIENTS_FAILED
     };
 };
 
+// Initialize
 export const initIngredients = () => {
     return (dispatch: Function) => {
         axios

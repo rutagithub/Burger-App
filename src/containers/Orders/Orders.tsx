@@ -20,6 +20,8 @@ interface Props {
   ];
   loading: boolean;
   onFetchOrders: Function;
+  token: string;
+  userId: string;
 }
 
 // Order Interface
@@ -34,14 +36,18 @@ interface Orders {
   order: {
     orders: string;
     loading: boolean;
-  }
+  },
+  auth: {
+    token: string;
+    userId: string;
+  };
 }
 
 // Code
 class Orders extends Component<Props> {
 
   componentDidMount(): void {
-    this.props.onFetchOrders();
+    this.props.onFetchOrders(this.props.token, this.props.userId);
   }
 
   render() {
@@ -63,13 +69,15 @@ class Orders extends Component<Props> {
 const mapStateToProps = (state: Orders) => {
   return {
     orders: state.order.orders,
-    loading: state.order.loading
+    loading: state.order.loading,
+    token: state.auth.token,
+    userId: state.auth.userId
   };
 };
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    onFetchOrders: () => dispatch(actions.fetchOrders())
+    onFetchOrders: (token: string, userId: string) => dispatch(actions.fetchOrders(token, userId))
   };
 };
 

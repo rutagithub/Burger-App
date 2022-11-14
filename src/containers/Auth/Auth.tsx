@@ -6,6 +6,8 @@ import { InputRules } from "../Checkout/ContactData/ContactData";
 import * as actions from '../../store/actions/index';
 import { connect } from "react-redux";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import { Redirect } from 'react-router-dom';
+import { updateObject } from '../../shared/utility';
 
 
 // Interfaces:
@@ -21,25 +23,31 @@ interface Props {
     onAuth: Function;
     loading: boolean;
     error: any;
+    isAuthenticated: boolean;
+    authRedirectPath: string;
+    buildingBurger: boolean;
+    onSetAuthRedirectPath: Function;
 }
 
 interface Data {
     loading: boolean;
     error: boolean;
+    token: string;
+    authRedirectPath: string;
 }
 
 // Auth State interface 
 interface AuthState {
-    // loading: boolean;
     auth: Data;
-
+    burgerBuilder: {
+        building: boolean;
+    }
 }
 
 // state interface 
 interface State {
     controls: {};
     isSignup: boolean;
-    
 }
 
 // Code
@@ -79,6 +87,12 @@ class Auth extends Component<Props, State> {
         isSignup: true
     }
 
+    componentDidMount(): void {
+        if (!this.props.buildingBurger && this.props.authRedirectPath !== '/') {
+            this.props.onSetAuthRedirectPath();
+        }
+    }
+
     checkValidity(value: string, rules: InputRules) {
         let isValid = true;
 
@@ -102,15 +116,13 @@ class Auth extends Component<Props, State> {
     }
 
     inputChangedHandler = (event: ChangeEvent<HTMLInputElement>, controlName: string) => {
-        const updatedControls = {
-            ...this.state.controls,
-            [controlName]: {
-                ...this.state.controls[controlName],
+        const updatedControls = updateObject(this.state.controls, {
+            [controlName]: updateObject(this.state.controls[controlName], {
                 value: event.target.value,
                 valid: this.checkValidity(event.target.value, this.state.controls[controlName].validation),
                 touched: true
-            }
-        };
+            })
+        });
         this.setState({ controls: updatedControls });
     }
 
@@ -172,8 +184,14 @@ class Auth extends Component<Props, State> {
             );
         }
 
+        let authRedirect = null;
+        if (this.props.isAuthenticated) {
+            authRedirect = <Redirect to={this.props.authRedirectPath} />
+        }
+
         return (
             <div className="Auth">
+                {authRedirect}
                 {errorMessage}
                 {form}
             </div>
@@ -184,13 +202,17 @@ class Auth extends Component<Props, State> {
 const mapStateToProps = (state: AuthState) => {
     return {
         loading: state.auth.loading,
-        error: state.auth.error
+        error: state.auth.error,
+        isAuthenticated: state.auth.token !== null,
+        buildingBurger: state.burgerBuilder.building,
+        authRedirectPath: state.auth.authRedirectPath
     };
 };
 
 const mapDispatchToProps = (dispatch: Function) => {
     return {
-        onAuth: (email: string, password: string, isSignup: boolean) => dispatch(actions.auth(email, password, isSignup))
+        onAuth: (email: string, password: string, isSignup: boolean) => dispatch(actions.auth(email, password, isSignup)),
+        onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
     };
 };
 

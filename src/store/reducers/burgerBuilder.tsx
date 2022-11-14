@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import { updateObject } from '../utility';
+import { updateObject } from '../../shared/utility';
 import { Action } from '../actions/actionTypes';
 import { Ingredients } from '../../containers/BurgerBuilder/BurgerBuilder';
 
@@ -21,14 +21,15 @@ interface ActionsProps {
   ingredientName: string;
 }
 
-// fetch failed action props interface 
+// fetch failed action props interface
 interface ActionFailed {}
 
-// Code 
+// Code
 const initialState = {
   ingredients: null,
   totalPrice: 4,
-  error: false
+  error: false,
+  building: false,
 };
 
 const INGREDIENT_PRICES: Ingredients = {
@@ -40,25 +41,31 @@ const INGREDIENT_PRICES: Ingredients = {
 
 // Add ingredient
 const addIngredient = (state: StateProps, action: ActionsProps) => {
-  const updatedIngredient = { [action.ingredientName]: state.ingredients[action.ingredientName] + 1 }
+  const updatedIngredient = {
+    [action.ingredientName]: state.ingredients[action.ingredientName] + 1,
+  };
   const updatedIngredients = updateObject(state.ingredients, updatedIngredient);
   const updatedState = {
     ingredients: updatedIngredients,
-    totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
-  }
+    totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
+    building: true,
+  };
   return updateObject(state, updatedState);
-}
+};
 
 // Remove ingredient
 const removeIngredient = (state: StateProps, action: ActionsProps) => {
-  const updatedIng = { [action.ingredientName]: state.ingredients[action.ingredientName] - 1 }
+  const updatedIng = {
+    [action.ingredientName]: state.ingredients[action.ingredientName] - 1,
+  };
   const updatedIngs = updateObject(state.ingredients, updatedIng);
   const updatedSt = {
     ingredients: updatedIngs,
-    totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
-  }
+    totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
+    building: true,
+  };
   return updateObject(state, updatedSt);
-}
+};
 
 // Set ingredients
 const setIngredients = (state: StateProps, action: ActionProps) => {
@@ -67,19 +74,20 @@ const setIngredients = (state: StateProps, action: ActionProps) => {
       salad: action.ingredients.salad,
       bacon: action.ingredients.bacon,
       cheese: action.ingredients.cheese,
-      meat: action.ingredients.meat
+      meat: action.ingredients.meat,
     },
     totalPrice: 4,
-    error: false
+    error: false,
+    building: false,
   });
-}
+};
 
 // Fetch ingredients failed
 const fetchIngredientsFailed = (state: StateProps, action: ActionFailed) => {
   return updateObject(state, { error: true });
-}
+};
 
-// Reducer 
+// Reducer
 const reducer = (state: StateProps = initialState, action: Action) => {
   switch (action.type) {
     case actionTypes.ADD_INGREDIENT:

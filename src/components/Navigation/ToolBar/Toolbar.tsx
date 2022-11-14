@@ -9,6 +9,8 @@ import DrawerToggle from "../SideDrawer/DrawerToggle/DrawerToggle";
 // Properties interface
 interface Props {
   drawerToggleClicked: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  isAuth: boolean;
+ 
 }
 const toolbar = (props: Props) => (
   <header className="Toolbar">
@@ -18,7 +20,7 @@ const toolbar = (props: Props) => (
     </div>
 
     <nav className="DesktopOnly">
-      <NavigationItems />
+      <NavigationItems isAuthenticated={props.isAuth}/>
     </nav>
   </header>
 );

@@ -10,6 +10,7 @@ import Aux from '../../../hoc/Auxilliary/Auxilliary';
 interface Props {
   open: boolean;
   closed: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  isAuth: boolean;
 }
 
 // Code
@@ -24,13 +25,13 @@ const sideDrawer = (props: Props) => {
   return (
     <Aux>
       <Backdrop show={props.open} clicked={props.closed} />
-      <div className={attachedClasses.join(' ')}>
+      <div className={attachedClasses.join(' ')} onClick={props.closed}>
         <div className="LogoSide">
           <Logo />
         </div>
 
         <nav>
-          <NavigationItems />
+          <NavigationItems isAuthenticated={props.isAuth}/>
         </nav>
       </div>
     </Aux>
