@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 import { Ingredients } from '../../containers/BurgerBuilder/BurgerBuilder';
@@ -10,7 +10,6 @@ interface Props {
 }
 
 const burger = (props: Props) => {
-  // console.log(props);
 
   let transformedIngredients = Object.keys(props.ingredients)
     .map(igKey => {
@@ -21,8 +20,6 @@ const burger = (props: Props) => {
     .reduce((arr, el) => {
       return arr.concat(el)
     }, []);
-  
-  // console.log(transformedIngredients);
 
   if (transformedIngredients.length === 0) {
     transformedIngredients = [<p key={"1"}>Please start adding ingredients!</p>];

@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import './Order.css';
 import { Ingredients } from '../../containers/BurgerBuilder/BurgerBuilder';
 
@@ -9,9 +9,14 @@ interface Props {
   price: string;
 }
 
+type Ing = {
+  name: string;
+  amount: number;
+}
+
 // Code
 const order = (props: Props) => {
-  const ingredients = [];
+  const ingredients: Ing[] = [];
 
   for (let ingredientName in props.ingredients) {
     ingredients.push(

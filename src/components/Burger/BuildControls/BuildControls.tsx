@@ -8,7 +8,7 @@ interface Props {
   price: number;
   ingredientAdded: Function;
   ingredientRemoved: Function;
-  disabled: { [key: string]: number | boolean};
+  disabled: { [key: string]: boolean };
   purchasable: boolean;
   ordered: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   isAuth: boolean;
@@ -33,8 +33,8 @@ const buildControls = (props: Props) => (
         removed={() => props.ingredientRemoved(ctrl.type)}
         disabled={props.disabled[ctrl.type]} />
     ))}
-    <button 
-      className="OrderButton" 
+    <button
+      className="OrderButton"
       disabled={!props.purchasable}
       onClick={props.ordered}>{props.isAuth ? 'ORDER NOW' : 'SIGN UP TO ORDER'}</button>
   </div>

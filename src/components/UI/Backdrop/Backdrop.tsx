@@ -4,7 +4,8 @@ import './Backdrop.css';
 // Interfaces:
 // Properties interface
 interface Props {
-  show:{ message: string } | string | boolean;
+  // show?:{ message?: null } | (() => void) | null;
+  show?: {message: string} | string | boolean;
   clicked?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 

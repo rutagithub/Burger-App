@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes';
-import axios from '../../axios-orders';
 import { Ingredients } from '../../containers/BurgerBuilder/BurgerBuilder';
 
 
@@ -38,16 +37,7 @@ export const fetchIngredientsFailed = (): actionTypes.Fetch => {
 
 // Initialize
 export const initIngredients = () => {
-    return (dispatch: Function) => {
-        axios
-            .get(
-                'https://burger-app-ts-default-rtdb.europe-west1.firebasedatabase.app/ingredients.json'
-            )
-            .then((response) => {
-                dispatch(setIngredients(response.data));
-            })
-            .catch((error) => {
-                dispatch(fetchIngredientsFailed());
-            });
-    };
+    return {
+        type: actionTypes.INIT_INGREDIENTS
+    }
 };
