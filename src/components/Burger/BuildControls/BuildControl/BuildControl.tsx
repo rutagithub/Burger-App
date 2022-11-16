@@ -6,7 +6,7 @@ import './BuildControl.css'
 interface Props {
   label: ReactNode;
   removed: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  disabled?: boolean;
+  disabled: number | boolean;
   added: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 

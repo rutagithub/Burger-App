@@ -22,7 +22,7 @@ interface ActionsProps {
 }
 
 // fetch failed action props interface
-interface ActionFailed {}
+interface ActionFailed { }
 
 // Code
 const initialState = {

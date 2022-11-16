@@ -5,7 +5,7 @@ import './Auth.css';
 import * as actions from '../../store/actions/index';
 import { connect } from "react-redux";
 import Spinner from "../../components/UI/Spinner/Spinner";
-import { Redirect } from 'react-router-dom';
+import { Redirect, RouteComponentProps } from 'react-router-dom';
 import { updateObject, checkValidity } from '../../shared/utility';
 
 
@@ -17,11 +17,11 @@ interface AuthForm {
 }
 
 // Properties interface
-interface Props {
-    isSignup: boolean;
+interface AuthProps extends RouteComponentProps {
+    isSignup?: boolean;
     onAuth: Function;
     loading: boolean;
-    error: any;
+    error: { message?: string };
     isAuthenticated: boolean;
     authRedirectPath: string;
     buildingBurger: boolean;
@@ -30,7 +30,7 @@ interface Props {
 
 interface Data {
     loading: boolean;
-    error: boolean;
+    error: { message: string; }
     token: string;
     authRedirectPath: string;
 }
@@ -43,14 +43,8 @@ interface AuthState {
     }
 }
 
-// state interface 
-interface State {
-    authForm: {};
-    isSignup: boolean;
-}
-
 // Code
-const Auth = (props: Props) => {
+const Auth = (props: AuthProps) => {
 
     const [authForm, setAuthForm] = useState({
         email: {
@@ -86,7 +80,7 @@ const Auth = (props: Props) => {
 
     const [isSignup, setIsSignUp] = useState(true);
 
-    const {buildingBurger, authRedirectPath, onSetAuthRedirectPath} = props;
+    const { buildingBurger, authRedirectPath, onSetAuthRedirectPath } = props;
 
     useEffect(() => {
         if (!buildingBurger && authRedirectPath !== '/') {
@@ -113,7 +107,6 @@ const Auth = (props: Props) => {
     const switchAuthModeHandler = () => {
         setIsSignUp(!isSignup);
     }
-
 
     const formElementsArray = [];
 

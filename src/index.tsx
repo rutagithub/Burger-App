@@ -13,7 +13,7 @@ import authReducer from './store/reducers/auth';
 import createSagaMiddleware from 'redux-saga';
 import { watchAuth, watchBurgerBuilder, watchOrder } from './store/sagas/index';
 
-type Comp = Function;
+// type Comp = Function;
 declare global {
   interface Window {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
@@ -28,9 +28,9 @@ const rootReducer = combineReducers({
 
 const sagaMiddleware = createSagaMiddleware();
 
-const composeEnhancers: Comp = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk, sagaMiddleware)));
+const store = createStore(rootReducer, (composeEnhancers as Function)(applyMiddleware(thunk, sagaMiddleware)));
 
 sagaMiddleware.run(watchAuth);
 sagaMiddleware.run(watchBurgerBuilder);

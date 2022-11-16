@@ -1,5 +1,5 @@
 import React, { useEffect, Suspense } from 'react';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect, RouteComponentProps } from 'react-router-dom';
 import Layout from './hoc/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Logout from './containers/Auth/Logout/Logout';
@@ -8,7 +8,7 @@ import * as actions from './store/actions/index';
 
 // Interfaces:
 // Properties interface
-interface Props {
+interface AppProps extends RouteComponentProps {
   onTryAutoSignUp: Function;
   isAuthenticated: boolean;
 }
@@ -20,6 +20,9 @@ interface State {
   }
 }
 
+// Auth
+interface Auth {
+}
 
 // Code
 
@@ -36,7 +39,7 @@ const Auth = React.lazy(() => {
 })
 
 
-const App = (props: Props) => {
+const App = (props: AppProps) => {
   const { onTryAutoSignUp } = props;
 
   useEffect(() => {
@@ -46,7 +49,7 @@ const App = (props: Props) => {
 
   let routes = (
     <Switch>
-      <Route path="/auth" render={(props) => <Auth {...props}/>} />
+      <Route path="/auth" render={(props) => <Auth {...props} />} />
       <Route path="/" component={BurgerBuilder} />
       <Redirect to='/' />
     </Switch>

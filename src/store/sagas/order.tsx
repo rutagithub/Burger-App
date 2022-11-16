@@ -4,9 +4,11 @@ import * as actions from '../actions/index';
 
 interface Response {
   data: any;
+  action: {
+    orderData: number;
+
+  }
 }
-
-
 
 export function* purchaseBurgerSaga(action: any) {
   yield put(actions.purchaseBurgerStart());
@@ -15,30 +17,28 @@ export function* purchaseBurgerSaga(action: any) {
     yield put(actions.purchaseBurgerSuccess(response.data.name, action.orderData))
   } catch (error: any) {
     yield put(actions.purchaseBurgerFail(error));
-
   }
-  
 }
 
 export function* fetchOrdersSaga(action: any) {
-  
+
   yield put(actions.fetchOrdersStart());
 
   const queryParams = '?auth=' + action.token + '&orderBy="userId"&equalTo="' + action.userId + '"';
 
   try {
-     const response: Response = yield axios.get('/orders.json' + queryParams);
+    const response: Response = yield axios.get('/orders.json' + queryParams);
 
-     const fetchedOrders = [];
+    const fetchedOrders = [];
 
-          for (let key in response.data) {
-              fetchedOrders.push({
-                  ...response.data[key],
-                  id: key
-              });
-          }
+    for (let key in response.data) {
+      fetchedOrders.push({
+        ...response.data[key],
+        id: key
+      });
+    }
     yield put(actions.fetchOrdersSuccess(fetchedOrders));
-          
+
   } catch (error: any) {
     yield put(actions.fetchOrdersFail(error));
   }

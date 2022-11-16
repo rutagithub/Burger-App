@@ -10,7 +10,7 @@ interface InputProps {
   elementType: string | number;
   changed: any;
   invalid: boolean;
-  shouldValidate: boolean;
+  shouldValidate: { required?: boolean; isEmail?: boolean; } | { required: boolean; minLength: number; };
   touched: boolean;
 }
 

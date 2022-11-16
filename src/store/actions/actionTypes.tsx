@@ -55,3 +55,6 @@ export interface Fetch {
 
 // All actions type
 export type Action = Add | Remove | Set | Fetch;
+
+
+

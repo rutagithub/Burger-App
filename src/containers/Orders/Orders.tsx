@@ -10,29 +10,19 @@ import Spinner from "../../components/UI/Spinner/Spinner";
 
 // Interfaces:
 // Properties interface 
-interface Props {
-  orders: [
-    {
-      id: number;
-      ingredients: Ingredients;
-      price: number;
-    }
-  ];
+export interface OrderProps {
+  orders: { map: Function; }
+  id: number;
+  ingredients: Ingredients;
+  price: string;
   loading: boolean;
   onFetchOrders: Function;
   token: string;
   userId: string;
 }
 
-// Order Interface
-interface Order {
-  id: number;
-  ingredients: Ingredients;
-  price: any;
-}
-
-// orders interface
-interface Orders {
+// State interface
+interface State {
   order: {
     orders: string;
     loading: boolean;
@@ -44,9 +34,9 @@ interface Orders {
 }
 
 // Code
-const Orders = (props: Props) => {
+const Orders = (props: OrderProps) => {
 
-  const {onFetchOrders} = props;
+  const { onFetchOrders } = props;
 
   useEffect(() => {
     onFetchOrders(props.token, props.userId);
@@ -56,7 +46,7 @@ const Orders = (props: Props) => {
   let orders: any = <Spinner />;
 
   if (!props.loading) {
-    orders = props.orders.map((order: Order) => (
+    orders = props.orders.map((order: OrderProps) => (
       <Order
         key={order.id}
         ingredients={order.ingredients}
@@ -68,7 +58,7 @@ const Orders = (props: Props) => {
 }
 
 
-const mapStateToProps = (state: Orders) => {
+const mapStateToProps = (state: State) => {
   return {
     orders: state.order.orders,
     loading: state.order.loading,

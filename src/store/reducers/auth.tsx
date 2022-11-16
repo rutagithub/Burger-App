@@ -12,7 +12,7 @@ interface Action {
 }
 
 // State interface
-interface State {}
+interface State { }
 
 const initialState = {
   token: null,

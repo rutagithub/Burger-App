@@ -2,16 +2,6 @@ import { put, delay, call } from 'redux-saga/effects';
 import * as actions from '../actions/index';
 import axios from 'axios';
 
-// Action interface
-
-// interface Action {
-//   removeItem: string;
-//   expirationTime: number;
-//   email: string;
-//   password: string;
-//   isSignup: boolean;
-// }
-
 // Response interface
 interface Response {
   data: {
@@ -70,17 +60,17 @@ export function* authUserSaga(action: any) {
 }
 
 export function* authCheckStateSaga() {
-  const token: string =  yield localStorage.getItem('token');
+  const token: string = yield localStorage.getItem('token');
   if (!token) {
     yield put(actions.logout());
   } else {
-      const expirationDate: ExpDate = yield new Date((localStorage.getItem('expirationDate')) as string);
-      if (expirationDate <= (new Date() as any)) {
-        yield put(actions.logout());
-      } else {
-          const userId: string = yield localStorage.getItem('userId');
-          yield put(actions.authSuccess(token, userId));
-          yield put(actions.checkAuthTimeOut((expirationDate.getTime() - new Date().getTime()) / 1000));
-      }
+    const expirationDate: ExpDate = yield new Date((localStorage.getItem('expirationDate')) as string);
+    if (expirationDate <= (new Date() as any)) {
+      yield put(actions.logout());
+    } else {
+      const userId: string = yield localStorage.getItem('userId');
+      yield put(actions.authSuccess(token, userId));
+      yield put(actions.checkAuthTimeOut((expirationDate.getTime() - new Date().getTime()) / 1000));
+    }
   }
 }

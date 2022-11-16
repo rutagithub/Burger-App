@@ -1,12 +1,15 @@
-import React, { ReactNode } from 'react';
+import React, { MouseEventHandler, ReactNode } from 'react';
 import './Modal.css';
 import Aux from '../../../hoc/Auxilliary/Auxilliary';
 import Backdrop from '../Backdrop/Backdrop';
 
 interface Props {
   // show?: { message?: null } | (() => void) | null | boolean;
-  show?: { message: string } | string | boolean;
+  // show: { error: {message: string} } | string | boolean | (() => void) | null;
+  show: boolean | null | Function;
+  // show: { error: {message: string} } | string | boolean;
   modalClosed: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  // modalClosed: MouseEventHandler<HTMLDivElement> | undefined;
   children: ReactNode;
 }
 const Modal = (props: Props) => {

@@ -29,10 +29,10 @@ interface ContactForm {
 }
 
 // contact form data state interface
-interface State {
-  orderForm: {};
-  formIsValid: boolean;
-}
+// interface State {
+//   orderForm: {};
+//   formIsValid: boolean;
+// }
 
 // input rules interface
 export interface InputRules {

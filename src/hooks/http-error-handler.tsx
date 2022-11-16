@@ -1,45 +1,47 @@
 import { useState, useEffect } from 'react';
 
+// Interfaces:
+// Properties interface
 interface Props {
   interceptors: Interceptors;
 }
 
-interface Functions {
-  eject: Function;
-  use: Function;
+// Interceptors interface
+export interface Interceptors {
+  response: {
+    eject: Function;
+    use: Function;
+  };
+  request: {
+    eject: Function;
+    use: Function;
+  }
 }
 
-interface Interceptors {
-  response: Functions;
-  request: Functions;
-}
-
+// Code
 export default (httpClient: Props) => {
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<boolean | null>(null);
 
+  const reqInterceptor = httpClient.interceptors.request.use((req: Props) => {
+    setError(null);
+    return req;
+  });
 
-    const reqInterceptor = httpClient.interceptors.request.use((req: Props) => {
-      setError(null);
-      return req;
-    });
+  const resInterceptor = httpClient.interceptors.response.use(
+    (res: Props) => res,
+    (err: boolean) => setError(err));
 
-    const resInterceptor = httpClient.interceptors.response.use(
-      (res: Props) => res,
-      (err: any) => {
-        setError(err)
-      });
-
-    useEffect(() => {
-      return () => {
-        httpClient.interceptors.request.eject(reqInterceptor);
-        httpClient.interceptors.response.eject(resInterceptor);
-      };
-    }, [reqInterceptor, resInterceptor]);
-
-
-    const errorConfirmedHandler = () => {
-      setError(null);
+  useEffect(() => {
+    return () => {
+      httpClient.interceptors.request.eject(reqInterceptor);
+      httpClient.interceptors.response.eject(resInterceptor);
     };
+  }, [reqInterceptor, resInterceptor]);
 
-    return [error, errorConfirmedHandler];
+
+  const errorConfirmedHandler: Function = () => {
+    setError(null);
+  };
+
+  return [error, errorConfirmedHandler];
 }

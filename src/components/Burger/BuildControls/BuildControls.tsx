@@ -8,7 +8,7 @@ interface Props {
   price: number;
   ingredientAdded: Function;
   ingredientRemoved: Function;
-  disabled: { [key: string]: boolean };
+  disabled: { [key: string]: number | boolean };
   purchasable: boolean;
   ordered: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   isAuth: boolean;

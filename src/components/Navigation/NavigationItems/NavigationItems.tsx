@@ -5,7 +5,7 @@ import NavigationItem from './NavigationItem/NavigationItem';
 // Interfaces:
 // Properties interface
 interface Props {
-  isAuthenticated: boolean;
+  isAuthenticated?: boolean;
 }
 
 const navigationItems = (props: Props) => (

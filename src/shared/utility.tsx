@@ -1,7 +1,7 @@
 import { InputRules } from '../containers/Checkout/ContactData/ContactData';
 
 // Utility properties interface
-interface Props {};
+interface Props { };
 
 // Code
 export const updateObject = (oldObject: Props, updatedProperties: Props) => {

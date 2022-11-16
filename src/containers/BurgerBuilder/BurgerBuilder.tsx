@@ -53,7 +53,7 @@ interface Props {
 }
 
 // Code
-const BurgerBuilder = (props: Props) => {
+export const BurgerBuilder = (props: Props) => {
   const [purchasing, setPurchasing] = useState(false);
 
   const dispatch = useDispatch();
@@ -66,11 +66,11 @@ const BurgerBuilder = (props: Props) => {
 
   const isAuthenticated = useSelector((state: State) => state.auth.token !== null);
 
- const onIngredientAdded = (ingName: string) => dispatch(actions.addIngredient(ingName));
- const onIngredientRemoved = (ingName: string) => dispatch(actions.removeIngredient(ingName));
- const onInitIngredients = useCallback(() => dispatch(actions.initIngredients()), [dispatch]);
- const onInitPurchase = () => dispatch(actions.purchaseInit());
- const onSetAuthRedirectPath = (path: string) => dispatch(actions.setAuthRedirectPath(path));
+  const onIngredientAdded = (ingName: string) => dispatch(actions.addIngredient(ingName));
+  const onIngredientRemoved = (ingName: string) => dispatch(actions.removeIngredient(ingName));
+  const onInitIngredients = useCallback(() => dispatch(actions.initIngredients()), [dispatch]);
+  const onInitPurchase = () => dispatch(actions.purchaseInit());
+  const onSetAuthRedirectPath = (path: string) => dispatch(actions.setAuthRedirectPath(path));
 
   useEffect(() => {
     onInitIngredients();

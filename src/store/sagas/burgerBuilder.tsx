@@ -1,4 +1,3 @@
-import { fetchIngredientsFailed } from '../actions/burgerBuilder';
 import axios from '../../axios-orders';
 import { put } from 'redux-saga/effects';
 import * as actions from '../actions/index';
@@ -7,7 +6,6 @@ import { Ingredients } from '../../containers/BurgerBuilder/BurgerBuilder';
 interface Response {
   data: Ingredients;
 }
-
 
 export function* initIngredientsSaga() {
   try {

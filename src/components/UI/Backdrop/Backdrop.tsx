@@ -1,12 +1,17 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import './Backdrop.css';
 
 // Interfaces:
 // Properties interface
 interface Props {
   // show?:{ message?: null } | (() => void) | null;
-  show?: {message: string} | string | boolean;
-  clicked?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  // show: { error: {message: string} } | string | boolean | (() => void) | null;
+  // show: { error: {message: string} } | string | boolean;
+  show: boolean | null | Function;
+
+
+  clicked: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  // clicked: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
 // Code

@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 
+
 export const purchaseBurgerSuccess = (id: number, orderData: number) => {
     return {
         type: actionTypes.PURCHASE_BURGER_SUCCESS,
@@ -49,7 +50,6 @@ export const fetchOrdersFail = (error: boolean) => {
     };
 };
 
-
 export const fetchOrdersStart = () => {
     return {
         type: actionTypes.FETCH_ORDERS_START
@@ -58,8 +58,8 @@ export const fetchOrdersStart = () => {
 
 export const fetchOrders = (token: string, userId: string) => {
     return {
-       type: actionTypes.FETCH_ORDERS,
-       token: token,
-       userId: userId
+        type: actionTypes.FETCH_ORDERS,
+        token: token,
+        userId: userId
     };
 };

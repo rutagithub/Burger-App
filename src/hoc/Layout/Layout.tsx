@@ -36,20 +36,20 @@ const Layout = (props: Props) => {
 
   };
 
-    return (
-      <Aux>
-        <Toolbar
-          isAuth={props.isAuthenticated}
-          drawerToggleClicked={sideDrawerToggleHandler} />
-        <SideDrawer
-          isAuth={props.isAuthenticated}
-          open={sideDrawerIsVisible}
-          closed={sideDrawerClosedHandler}
-        />
-        <main className="Content">{props.children}</main>
-      </Aux>
-    );
-  }
+  return (
+    <Aux>
+      <Toolbar
+        isAuth={props.isAuthenticated}
+        drawerToggleClicked={sideDrawerToggleHandler} />
+      <SideDrawer
+        isAuth={props.isAuthenticated}
+        open={sideDrawerIsVisible}
+        closed={sideDrawerClosedHandler}
+      />
+      <main className="Content">{props.children}</main>
+    </Aux>
+  );
+}
 
 const mapStateToProps = (state: State) => {
   return {
