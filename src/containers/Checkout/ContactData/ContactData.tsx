@@ -28,12 +28,6 @@ interface ContactForm {
   postalCode: string;
 }
 
-// contact form data state interface
-// interface State {
-//   orderForm: {};
-//   formIsValid: boolean;
-// }
-
 // input rules interface
 export interface InputRules {
   elementType: string;
@@ -233,7 +227,7 @@ const ContactData = (props: Props) => {
           invalid={!formElement.config.valid}
           shouldValidate={formElement.config.validation}
           touched={formElement.config.touched}
-          changed={(event: React.ChangeEvent<HTMLInputElement>) =>
+          changed={(event: ChangeEvent<HTMLInputElement>) =>
             inputChangedHandler(event, formElement.id)}
         />
       ))}

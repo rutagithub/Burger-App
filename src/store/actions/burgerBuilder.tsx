@@ -1,7 +1,6 @@
 import * as actionTypes from './actionTypes';
 import { Ingredients } from '../../containers/BurgerBuilder/BurgerBuilder';
 
-
 // Add ingredient
 export const addIngredient = (
     name: string

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
+import { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
 import './Auth.css';
@@ -18,7 +18,6 @@ interface AuthForm {
 
 // Properties interface
 interface AuthProps extends RouteComponentProps {
-    isSignup?: boolean;
     onAuth: Function;
     loading: boolean;
     error: { message?: string };

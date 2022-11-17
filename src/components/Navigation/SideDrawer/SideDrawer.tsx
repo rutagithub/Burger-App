@@ -17,7 +17,7 @@ interface Props {
 const sideDrawer = (props: Props) => {
 
   let attachedClasses = ["SideDrawer", "Close"];
-  
+
   if (props.open) {
     attachedClasses = ["SideDrawer", "Open"];
   }
@@ -31,7 +31,7 @@ const sideDrawer = (props: Props) => {
         </div>
 
         <nav>
-          <NavigationItems isAuthenticated={props.isAuth}/>
+          <NavigationItems isAuthenticated={props.isAuth} />
         </nav>
       </div>
     </Aux>

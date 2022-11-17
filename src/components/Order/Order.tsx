@@ -9,6 +9,7 @@ interface Props {
   price: string;
 }
 
+// Type
 type Ing = {
   name: string;
   amount: number;

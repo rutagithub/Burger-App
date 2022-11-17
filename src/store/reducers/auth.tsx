@@ -4,11 +4,11 @@ import { updateObject } from '../../shared/utility';
 // Interfaces:
 // action interface
 interface Action {
-  userId: number;
-  error: boolean;
-  type: string;
-  idToken: string;
-  path: string;
+  userId?: string;
+  error?: boolean;
+  type?: string;
+  idToken?: string;
+  path?: string;
 }
 
 // State interface
@@ -19,7 +19,7 @@ const initialState = {
   userId: null,
   error: null,
   loading: false,
-  authRedirectPath: '/',
+  authRedirectPath: '/'
 };
 
 const authStart = (state: State, action: Action) => {

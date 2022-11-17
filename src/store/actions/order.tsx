@@ -1,6 +1,5 @@
 import * as actionTypes from './actionTypes';
 
-
 export const purchaseBurgerSuccess = (id: number, orderData: number) => {
     return {
         type: actionTypes.PURCHASE_BURGER_SUCCESS,

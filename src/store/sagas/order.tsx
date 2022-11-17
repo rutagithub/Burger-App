@@ -6,7 +6,6 @@ interface Response {
   data: any;
   action: {
     orderData: number;
-
   }
 }
 

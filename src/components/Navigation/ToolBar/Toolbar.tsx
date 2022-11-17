@@ -4,7 +4,6 @@ import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import DrawerToggle from "../SideDrawer/DrawerToggle/DrawerToggle";
 
-
 // Interfaces:
 // Properties interface
 interface Props {

@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { connect } from 'react-redux';
 import Aux from '../Auxilliary/Auxilliary';
 import './Layout.css';
@@ -25,15 +25,12 @@ interface State {
 const Layout = (props: Props) => {
   const [sideDrawerIsVisible, setSideDrawerIsVisible] = useState(false);
 
-
-
   const sideDrawerClosedHandler = () => {
     setSideDrawerIsVisible(false);
   };
 
   const sideDrawerToggleHandler = () => {
     setSideDrawerIsVisible(!sideDrawerIsVisible);
-
   };
 
   return (

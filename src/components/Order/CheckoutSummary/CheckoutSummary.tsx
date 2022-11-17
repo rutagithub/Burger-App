@@ -12,6 +12,7 @@ interface Props {
   ingredients: Ingredients;
 }
 
+// Code
 const checkoutSummary = (props: Props) => {
   return (
     <div className="CheckoutSummary">

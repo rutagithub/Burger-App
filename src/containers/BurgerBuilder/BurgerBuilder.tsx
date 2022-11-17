@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Aux from '../../hoc/Auxilliary/Auxilliary';
 import Burger from '../../components/Burger/Burger';
@@ -38,22 +38,8 @@ interface State {
   }
 }
 
-// interface for properties
-interface Props {
-  ings: Ingredients;
-  price: number;
-  error: boolean;
-  history: { push: Function };
-  onIngredientAdded: Function;
-  onIngredientRemoved: Function;
-  onInitIngredients: Function;
-  onInitPurchase: Function;
-  isAuthenticated: boolean;
-  onSetAuthRedirectPath: Function;
-}
-
 // Code
-export const BurgerBuilder = (props: Props) => {
+export const BurgerBuilder = (props: any) => {
   const [purchasing, setPurchasing] = useState(false);
 
   const dispatch = useDispatch();

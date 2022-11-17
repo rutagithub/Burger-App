@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { connect } from 'react-redux';
 import Order from "../../components/Order/Order";
 import axios from '../../axios-orders';
@@ -6,7 +6,6 @@ import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import { Ingredients } from '../BurgerBuilder/BurgerBuilder';
 import * as actions from '../../store/actions/index';
 import Spinner from "../../components/UI/Spinner/Spinner";
-
 
 // Interfaces:
 // Properties interface 

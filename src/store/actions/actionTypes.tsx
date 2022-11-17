@@ -28,8 +28,7 @@ export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 
 export const SET_AUTH_REDIRECT_PATH = "SET_AUTH_REDIRECT_PATH";
 
-// Action interfaces
-
+// Main Action interfaces
 // Add ingredient action interface
 export interface Add {
     type: typeof ADD_INGREDIENT;

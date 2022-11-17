@@ -25,7 +25,6 @@ interface Auth {
 }
 
 // Code
-
 const Checkout = React.lazy(() => {
   return import('./containers/Checkout/Checkout');
 })
@@ -38,14 +37,12 @@ const Auth = React.lazy(() => {
   return import('./containers/Auth/Auth');
 })
 
-
 const App = (props: AppProps) => {
   const { onTryAutoSignUp } = props;
 
   useEffect(() => {
     onTryAutoSignUp();
   }, [onTryAutoSignUp]);
-
 
   let routes = (
     <Switch>

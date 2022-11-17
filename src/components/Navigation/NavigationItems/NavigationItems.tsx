@@ -1,4 +1,3 @@
-import React from "react";
 import './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
 

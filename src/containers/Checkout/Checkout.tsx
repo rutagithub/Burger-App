@@ -1,4 +1,3 @@
-import React from 'react';
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import { Route, Redirect, RouteComponentProps } from 'react-router-dom';
 import ContactData from './ContactData/ContactData';
@@ -38,7 +37,6 @@ const Checkout = (props: CheckoutProps) => {
     props.history.replace('/checkout/contact-data');
   };
 
-
   let summary = <Redirect to='/' />;
 
   if (props.ings) {
@@ -62,14 +60,11 @@ const Checkout = (props: CheckoutProps) => {
   return summary;
 }
 
-
 const mapStateToProps = (state: State) => {
   return {
     ings: state.burgerBuilder.ingredients,
     purchased: state.order.purchased
   };
 };
-
-
 
 export default connect(mapStateToProps)(Checkout);

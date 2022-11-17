@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import './NavigationItem.css';
 import { NavLink } from 'react-router-dom';
 
